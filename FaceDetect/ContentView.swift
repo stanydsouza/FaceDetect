@@ -47,14 +47,14 @@ struct ContentView: View {
                 guard let image = UIImage(named: imageName) else {
                     return
                 }
-                try await detectFaceRectangles(image: image)
+                try await detectFace(image: image)
             } catch {
                 print("Vision Error: \(error)")
             }
         }
     }
 
-    private func detectFaceRectangles(image: UIImage) async throws {
+    private func detectFace(image: UIImage) async throws {
         if #available(iOS 18.0, *), !isSimulator {
             try await detectFaceIOS18Above(image: image)
         } else {
