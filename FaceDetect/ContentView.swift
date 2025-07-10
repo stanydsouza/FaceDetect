@@ -116,7 +116,7 @@ struct ContentView: View {
                 throw CustomError.noResults
             }
             
-            let faceRects = results.filter { $0.confidence > 0.7 }.map { FaceRect(rect: $0.boundingBox.cgRect) }
+            let faceRects = results.map { FaceRect(rect: $0.boundingBox.cgRect) }
             
             await MainActor.run {
                 rectangles = Array(faceRects)
